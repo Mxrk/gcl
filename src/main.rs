@@ -4,15 +4,19 @@ use std::process::Command;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let mut path = match env::var("gcl") {
-        Ok(path) => path,
-        Err(error) => panic!("Couldn't load path from env 'gcl': {}", error),
-    };
 
     if args.len() <= 1 {
         println!("Usage: {} <url>", &args[0]);
         return;
     }
+    
+    let mut path = match env::var("gcl") {
+        Ok(path) => path,
+        Err(_error) => {
+            println!("gcl path not set, using current directory");
+            env::current_dir().unwrap().to_str().unwrap().to_owned()
+        }
+    };
 
     let mut url = args[1].to_owned();
     // ./gcl, url -> len 2

@@ -5,6 +5,7 @@ I really like the project path structure from the "old" [go workspaces](https://
 I use this structure for every project I clone, so I had to navigate into the given base folder and create all underlying folders which was quite a pain. That's why I created this tiny tool which helps to keep the structure without the need for multiple commands.
 
 Example: `gcl https://github.com/<user>/<project>`
+You can either set a basepath via the gcl environment variable or the curent working directory will be used.
 
 gcl is creating a `<basePath>/github.com/<user>/<project>` folder structure were the project will be cloned into.
 
@@ -15,4 +16,8 @@ Example: `gcl -p rust https://github.com/<user>/<project>`
 
 # Requirements:
 - git (I could also use https://github.com/rust-lang/git2-rs which would resolve this)
-- set gcl environment variable
+- set gcl environment variable if you don't want to use the current working directory
+
+# Installation:
+- clone the repo
+- cargo install gcl
